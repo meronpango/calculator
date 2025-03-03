@@ -9,32 +9,46 @@
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 20px;
-            background-color: #121212;
+            background-color: #181818;
             color: white;
         }
-        input {
-            margin: 5px;
-            padding: 8px;
-            width: 100px;
+        input, button {
+            margin: 8px;
+            padding: 10px;
+            width: 150px;
             background-color: #222;
             color: white;
-            border: 1px solid white;
+            border: 1px solid #555;
+            border-radius: 5px;
+            text-align: center;
         }
         button {
-            padding: 8px 15px;
-            margin: 10px;
+            cursor: pointer;
             background-color: #444;
-            color: white;
-            border: 1px solid white;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #666;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #222;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
         }
         table {
             margin: 20px auto;
             border-collapse: collapse;
-            width: 50%;
+            width: 60%;
+            background-color: #222;
+            border-radius: 5px;
+            overflow: hidden;
         }
         th, td {
-            border: 1px solid white;
-            padding: 10px;
+            border: 1px solid #555;
+            padding: 12px;
             text-align: center;
         }
         th {
@@ -43,39 +57,40 @@
         .SS { color: gold; font-weight: bold; }
         .S { color: orange; font-weight: bold; }
         .A { color: green; font-weight: bold; }
-        .B { color: blue; font-weight: bold; }
+        .B { color: lightblue; font-weight: bold; }
         .C { color: purple; font-weight: bold; }
         .D { color: brown; font-weight: bold; }
         .F { color: red; font-weight: bold; }
         img {
             display: block;
             margin: 20px auto;
-            max-width: 100%;
-            height: auto;
+            max-width: 80%;
+            border-radius: 10px;
         }
     </style>
 </head>
 <body>
-    <h2>Pokemon GO Luck Calculator by Merooon Paan</h2>
-    <div>
+    <div class="container">
+        <h2>Pokemon GO Luck Calculator</h2>
+        <p style="font-size: 14px; margin-top: -10px;">by Merooon Paan</p>
         <img src="duck.jpg" alt="Duck">
+        
+        <label>จำนวนการเรดทั้งหมด:</label>
+        <input type="number" id="raids" placeholder="ใส่จำนวน">
+        <br>
+        <label>จำนวน IV 100 ที่ได้:</label>
+        <input type="number" id="iv100" placeholder="ใส่จำนวน">
+        <br>
+        <label>จำนวนโปเกมอน Shiny ที่ได้:</label>
+        <input type="number" id="shiny" placeholder="ใส่จำนวน">
+        <br>
+        <button onclick="calculateLuck()">คำนวณ</button>
+        <h3>ผลลัพธ์:</h3>
+        <p>จำนวน IV 100 ที่ควรจะได้: <span id="expectedIv100" class="result">0</span></p>
+        <p>จำนวน Shiny ที่ควรจะได้: <span id="expectedShiny" class="result">0</span></p>
+        <p>ระดับโชค IV 100: <span id="luckIv100" class="result">-</span> (<span id="gradeIv100" class="result">-</span>)</p>
+        <p>ระดับโชค Shiny: <span id="luckShiny" class="result">-</span> (<span id="gradeShiny" class="result">-</span>)</p>
     </div>
-    
-    <label>จำนวนการเรดทั้งหมด:</label>
-    <input type="number" id="raids" placeholder="ใส่จำนวนการเรดทั้งหมด">
-    <br>
-    <label>จำนวน IV 100 ที่ได้:</label>
-    <input type="number" id="iv100" placeholder="ใส่จำนวน IV 100">
-    <br>
-    <label>จำนวนโปเกมอน Shiny ที่ได้:</label>
-    <input type="number" id="shiny" placeholder="ใส่จำนวน Shiny">
-    <br>
-    <button onclick="calculateLuck()">คำนวณ</button>
-    <h3>ผลลัพธ์:</h3>
-    <p>จำนวน IV 100 ที่ควรจะได้: <span id="expectedIv100" class="result">0</span></p>
-    <p>จำนวน Shiny ที่ควรจะได้: <span id="expectedShiny" class="result">0</span></p>
-    <p>ระดับโชค IV 100: <span id="luckIv100" class="result">-</span> (<span id="gradeIv100" class="result">-</span>)</p>
-    <p>ระดับโชค Shiny: <span id="luckShiny" class="result">-</span> (<span id="gradeShiny" class="result">-</span>)</p>
     
     <h3>ตารางเปรียบเทียบระดับโชค</h3>
     <table>
@@ -124,10 +139,9 @@
             document.getElementById("expectedShiny").innerText = expectedShiny.toFixed(2);
             document.getElementById("luckIv100").innerText = iv100Luck.text;
             document.getElementById("gradeIv100").innerText = iv100Luck.grade;
+            document.getElementById("gradeIv100").className = iv100Luck.grade;
             document.getElementById("luckShiny").innerText = shinyLuck.text;
             document.getElementById("gradeShiny").innerText = shinyLuck.grade;
-            
-            document.getElementById("gradeIv100").className = iv100Luck.grade;
             document.getElementById("gradeShiny").className = shinyLuck.grade;
         }
     </script>
