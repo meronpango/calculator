@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>วิธีการเช็คว่าตีไปกี่ตัว</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+            background-color: #181818;
+            color: white;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #222;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+        h2 {
+            color: lightblue;
+        }
+        p {
+            text-align: left;
+            padding: 10px;
+        }
+        img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+        a {
+            color: lightblue;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>วิธีการเช็คว่าตีไปกี่ตัว</h2>
+        <p>หากคุณต้องการเช็คจำนวน Raid ที่คุณได้ตีไปแล้วใน Pokémon GO สามารถทำตามขั้นตอนต่อไปนี้:</p>
+        <p><strong>1. เปิดแอป Pokémon GO</strong></p>
+        <p><strong>2. ไปที่หน้าโปรไฟล์ของคุณ</strong></p>
+        <p><strong>3. เลื่อนลงไปที่ "Total Raids Won" หรือ "จำนวนการตี Raid ที่ชนะ"</strong></p>
+        <p><strong>4. ใช้ตัวเลขนั้นกรอกลงในเครื่องคำนวณ</strong></p>
+        <img src="raids_check_example.jpg" alt="วิธีการเช็คจำนวน Raid">
+        <p><a href="index.html">← กลับไปที่เครื่องคำนวณ</a></p>
+    </div>
+</body>
+</html>
