@@ -72,10 +72,10 @@
     <br>
     <button onclick="calculateLuck()">คำนวณ</button>
     <h3>ผลลัพธ์:</h3>
-    <p>จำนวน IV 100 ที่ควรจะได้: <span id="expectedIv100">0</span></p>
-    <p>จำนวน Shiny ที่ควรจะได้: <span id="expectedShiny">0</span></p>
-    <p>ระดับโชค IV 100: <span id="luckIv100">-</span> (<span id="gradeIv100" class="">-</span>)</p>
-    <p>ระดับโชค Shiny: <span id="luckShiny">-</span> (<span id="gradeShiny" class="">-</span>)</p>
+    <p>จำนวน IV 100 ที่ควรจะได้: <span id="expectedIv100" class="result">0</span></p>
+    <p>จำนวน Shiny ที่ควรจะได้: <span id="expectedShiny" class="result">0</span></p>
+    <p>ระดับโชค IV 100: <span id="luckIv100" class="result">-</span> (<span id="gradeIv100" class="result">-</span>)</p>
+    <p>ระดับโชค Shiny: <span id="luckShiny" class="result">-</span> (<span id="gradeShiny" class="result">-</span>)</p>
     
     <h3>ตารางเปรียบเทียบระดับโชค</h3>
     <table>
@@ -95,8 +95,8 @@
             let iv100 = parseInt(document.getElementById("iv100").value);
             let shiny = parseInt(document.getElementById("shiny").value);
             
-            let iv100Rate = 1/216; // ความน่าจะเป็นของ IV 100
-            let shinyRate = 1/20; // ความน่าจะเป็นของ Shiny
+            let iv100Rate = 1/216;
+            let shinyRate = 1/20;
             
             let expectedIv100 = raids * iv100Rate;
             let expectedShiny = raids * shinyRate;
@@ -108,12 +108,12 @@
             let zShiny = (shiny - expectedShiny) / (stdShiny || 1);
             
             let luckTier = (z) => {
-                if (z >= 3) return { grade: "SS", text: "ดวงเฮงสุดๆ" };
-                if (z >= 2) return { grade: "S", text: "ดวงดีมาก" };
-                if (z >= 1) return { grade: "A", text: "ดวงดี" };
-                if (z >= -1) return { grade: "B", text: "ดวงกลางๆ" };
-                if (z >= -2) return { grade: "C", text: "ดวงแย่เล็กน้อย" };
-                if (z >= -3) return { grade: "D", text: "ดวงห่วย" };
+                if (z >= 2.5) return { grade: "SS", text: "ดวงเฮงสุดๆ" };
+                if (z >= 1.5) return { grade: "S", text: "ดวงดีมาก" };
+                if (z >= 0.5) return { grade: "A", text: "ดวงดี" };
+                if (z >= -0.49) return { grade: "B", text: "ดวงกลางๆ" };
+                if (z >= -1.49) return { grade: "C", text: "ดวงแย่เล็กน้อย" };
+                if (z >= -2.49) return { grade: "D", text: "ดวงห่วย" };
                 return { grade: "F", text: "ดวงกากมากๆ" };
             };
             
@@ -123,16 +123,12 @@
             document.getElementById("expectedIv100").innerText = expectedIv100.toFixed(2);
             document.getElementById("expectedShiny").innerText = expectedShiny.toFixed(2);
             document.getElementById("luckIv100").innerText = iv100Luck.text;
+            document.getElementById("gradeIv100").innerText = iv100Luck.grade;
             document.getElementById("luckShiny").innerText = shinyLuck.text;
+            document.getElementById("gradeShiny").innerText = shinyLuck.grade;
             
-            let gradeIv100 = document.getElementById("gradeIv100");
-            let gradeShiny = document.getElementById("gradeShiny");
-            
-            gradeIv100.innerText = iv100Luck.grade;
-            gradeIv100.className = iv100Luck.grade;
-            
-            gradeShiny.innerText = shinyLuck.grade;
-            gradeShiny.className = shinyLuck.grade;
+            document.getElementById("gradeIv100").className = iv100Luck.grade;
+            document.getElementById("gradeShiny").className = shinyLuck.grade;
         }
     </script>
 </body>
