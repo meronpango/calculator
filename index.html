@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokemon GO Luck Calculator</title>
     <style>
+        a { color: lightblue; }
         body {
             font-family: Arial, sans-serif;
             text-align: center;
@@ -67,7 +68,7 @@
 <body>
     <div class="container">
         <h2>Pokemon GO Luck Calculator</h2>
-        <p style="font-size: 14px; margin-top: -10px;">by Merooon Paan</p>
+        <p><a href="howto.html" style="display: block; margin-top: 10px;">วิธีเช็คว่าตีไปกี่ตัว</a></p>
         <img src="duck.jpg" alt="Duck" style="max-width: 80%; border-radius: 10px; display: block; margin: 0 auto 20px;">
         
         <label>จำนวน raid ที่ตีไป:</label>
@@ -114,22 +115,13 @@
             document.getElementById("expectedIv100").innerText = expectedIv100.toFixed(2);
             document.getElementById("expectedShiny").innerText = expectedShiny.toFixed(2);
             
-            let luckDescriptions = {
-                "SS": "ดวงเฮงสุดๆ",
-                "S": "ดวงดีมาก",
-                "A": "ดวงดี",
-                "B": "ดวงกลางๆ",
-                "C": "ดวงแย่เล็กน้อย",
-                "D": "ดวงห่วย",
-                "F": "ดวงกากมากๆ"
-            };
-            
-            let grade = ["F", "D", "C", "B", "A", "S", "SS"];
+            let grades = { "SS": "ดวงเฮงสุดๆ", "S": "ดวงดีมาก", "A": "ดวงดี", "B": "ดวงกลางๆ", "C": "ดวงแย่เล็กน้อย", "D": "ดวงห่วย", "F": "ดวงกากมากๆ" };
+            let gradeLevels = ["F", "D", "C", "B", "A", "S", "SS"];
             let thresholds = [-2.49, -1.49, -0.49, 0.5, 1.5, 2.5];
             
             function getLuckGrade(value) {
                 for (let i = 0; i < thresholds.length; i++) {
-                    if (value < thresholds[i]) return grade[i];
+                    if (value < thresholds[i]) return gradeLevels[i];
                 }
                 return "SS";
             }
@@ -138,11 +130,11 @@
             let shinyLuck = getLuckGrade((shiny - expectedShiny) / (Math.sqrt(expectedShiny) || 1));
             
             document.getElementById("gradeIv100").innerText = iv100Luck;
-            document.getElementById("luckIv100").innerText = luckDescriptions[iv100Luck];
-            document.getElementById("gradeShiny").innerText = shinyLuck;
-            document.getElementById("luckShiny").innerText = luckDescriptions[shinyLuck];
             document.getElementById("gradeIv100").className = iv100Luck;
+            document.getElementById("luckIv100").innerText = grades[iv100Luck];
+            document.getElementById("gradeShiny").innerText = shinyLuck;
             document.getElementById("gradeShiny").className = shinyLuck;
+            document.getElementById("luckShiny").innerText = grades[shinyLuck];
         }
     </script>
 </body>
